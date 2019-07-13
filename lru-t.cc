@@ -7,7 +7,7 @@ using namespace testing;
 
 TEST(LRUCache, insertOne)
 {
-    LRUCache cache([](int a) -> int {return a * 2;}, 1);
+    LRUCache<int, int> cache([](int a) -> int {return a * 2;}, 1);
     EXPECT_EQ(0, cache.size());
     int result = cache.get(2);
     EXPECT_EQ(4, result);
@@ -17,7 +17,7 @@ TEST(LRUCache, insertOne)
 TEST(LRUCache, computeTwiceUseCache)
 {
     int count{0};
-    LRUCache cache([&](int a) -> int {count++; return a * 2;}, 1);
+    LRUCache<int, int> cache([&](int a) -> int {count++; return a * 2;}, 1);
 
     // Function is called because result is not in cache
     EXPECT_EQ(0, cache.size());
@@ -37,7 +37,7 @@ TEST(LRUCache, computeTwiceUseCache)
 TEST(LRUCache, fullCache)
 {
     int count{0};
-    LRUCache cache([&](int a) -> int {count++; return a * 2;}, 2);
+    LRUCache<int, int> cache([&](int a) -> int {count++; return a * 2;}, 2);
 
     // Function is called because result is not in cache
     EXPECT_EQ(0, cache.size());

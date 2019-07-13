@@ -6,20 +6,23 @@
 #include <functional>
 #include <unordered_map>
 
+template<typename KeyType, typename ValueType>
 class LRUCache
 {
 public:
-    LRUCache(std::function<int(int)> cachedFunction, int size)
+    LRUCache(std::function<ValueType(KeyType)> cachedFunction, int size)
         : size_(size)
-         , f_(cachedFunction) {};
-    int get(int key);
+        , f_(cachedFunction) {};
+    ValueType get(KeyType key);
     int size() {return cache_.size();}
-    bool hasKey(int key) {return cache_.find(key) != cache_.end();}
+    bool hasKey(KeyType key) {return cache_.find(key) != cache_.end();}
 private:
     unsigned int const size_{};
-    std::unordered_map<int, int> cache_{};
-    std::list<int> keys_{};
-    std::function<int(int)> f_;
+    std::unordered_map<KeyType, ValueType> cache_{};
+    std::list<KeyType> keys_{};
+    std::function<ValueType(KeyType)> f_;
 };
+
+#include "lru.tpp"
 
 #endif
