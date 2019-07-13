@@ -14,6 +14,7 @@ public:
          , f_(cachedFunction) {};
     int get(int key);
     int size() {return cache_.size();}
+    bool hasKey(int key) {return cache_.find(key) != cache_.end();}
 private:
     unsigned int const size_{};
     std::unordered_map<int, int> cache_{};
