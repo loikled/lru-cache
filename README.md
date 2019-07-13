@@ -29,7 +29,7 @@ make
 
 # How to run
 
-For now only tests of the lib has been implemented with gtets.
+For now only tests of the lib has been implemented with gtest.
 You can use `ctest` to run them:
 ```
 ctest .
